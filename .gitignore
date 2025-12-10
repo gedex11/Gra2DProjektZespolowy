@@ -1,0 +1,14 @@
+# Godot-specific
+.import/
+.export/
+godot/mono/temp/
+
+# Mono C#
+*.csproj
+*.sln
+*.mdb
+*.pdb
+
+# OS junk
+.DS_Store
+Thumbs.db
