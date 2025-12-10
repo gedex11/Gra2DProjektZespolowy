@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://8h3iyw4ule6o"
-path="res://.godot/imported/neo_zero_props_and_items_01.png-bfbbb74b058112ff9d4d972b68b0fa10.ctex"
+uid="uid://c0n27err5nd8x"
+path="res://.godot/imported/neo_zero_buildings_02.png-e2270c0bab30c748b7b05986bd540036.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/neo_zero_props_and_items_01.png"
-dest_files=["res://.godot/imported/neo_zero_props_and_items_01.png-bfbbb74b058112ff9d4d972b68b0fa10.ctex"]
+source_file="res://assets/neo_zero/neo_zero_buildings_02.png"
+dest_files=["res://.godot/imported/neo_zero_buildings_02.png-e2270c0bab30c748b7b05986bd540036.ctex"]
 
 [params]
 

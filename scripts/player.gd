@@ -1,17 +1,23 @@
 extends CharacterBody2D
 
-
-const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
-
+const SPEED := 130.0
+@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
 func _physics_process(delta: float) -> void:
+	var input_vector := Vector2.ZERO
+	input_vector.x = Input.get_axis("move_left", "move_right")
+	input_vector.y = Input.get_axis("move_up", "move_down")
 
+	# Normalizujemy, żeby postać nie chodziła szybciej po skosie
+	input_vector = input_vector.normalized()
+	
+	
+	
 
-	var direction := Input.get_axis("ui_left", "ui_right")
-	if direction:
-		velocity.x = direction * SPEED
+	velocity = input_vector * SPEED
+
+	if velocity.x == 0 and velocity.y == 0:
+		animated_sprite_2d.play("idle")
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-
+		animated_sprite_2d.play("run")
 	move_and_slide()
