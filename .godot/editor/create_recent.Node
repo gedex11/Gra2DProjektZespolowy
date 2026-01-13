@@ -1,6 +1,10 @@
-TileMapLayer
-TileMap
-Camera2D
+Label
 CollisionShape2D
+Area2D
+Sprite2D
+StaticBody2D
 AnimatedSprite2D
 CharacterBody2D
+Camera2D
+TileMapLayer
+TileMap

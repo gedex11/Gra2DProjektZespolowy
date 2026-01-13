@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://capx7rhvxpa5v"]
+
+[ext_resource type="Texture2D" uid="uid://d4ewogr3kc7m6" path="res://assets/textures/characters/player/luke_tatooine.png" id="1_sl741"]
+[ext_resource type="Script" uid="uid://dt28lil0w8yrb" path="res://scenes/characters/luke_npc.gd" id="1_yqwbm"]
+[ext_resource type="FontFile" uid="uid://c1otpuieulf2y" path="res://assets/fonts/PixelOperator8.ttf" id="3_y4bt0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yqwbm"]
+radius = 5.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sl741"]
+size = Vector2(50, 35.75)
+
+[node name="LukeNPC" type="StaticBody2D"]
+script = ExtResource("1_yqwbm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_yqwbm")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_sl741")
+
+[node name="InteractArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractArea"]
+position = Vector2(0, 17.875)
+shape = SubResource("RectangleShape2D_sl741")
+
+[node name="DialogLabel" type="Label" parent="."]
+offset_left = -53.0
+offset_top = -38.0
+offset_right = 53.0
+offset_bottom = -9.0
+theme_override_fonts/font = ExtResource("3_y4bt0")
+theme_override_font_sizes/font_size = 8
+
+[connection signal="body_entered" from="InteractArea" to="." method="_on_interact_area_body_entered"]
+[connection signal="body_exited" from="InteractArea" to="." method="_on_interact_area_body_exited"]
