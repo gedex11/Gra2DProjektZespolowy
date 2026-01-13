@@ -1,6 +1,2 @@
-res://scripts/player.gd
-res://scenes/levels/game_level_1.tscn
 res://scenes/characters/luke_npc.tscn
-res://scenes/characters/luke_npc.gd
-res://scenes/characters/player_1.tscn
-res://scenes/levels/hub.tscn
+res://scenes/levels/game_level_1.tscn

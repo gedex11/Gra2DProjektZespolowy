@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://capx7rhvxpa5v"]
 
 [ext_resource type="Texture2D" uid="uid://d4ewogr3kc7m6" path="res://assets/textures/characters/player/luke_tatooine.png" id="1_sl741"]
-[ext_resource type="Script" uid="uid://dt28lil0w8yrb" path="res://scenes/characters/luke_npc.gd" id="1_yqwbm"]
+[ext_resource type="Script" uid="uid://dt28lil0w8yrb" path="res://scripts/luke_npc.gd" id="1_yqwbm"]
 [ext_resource type="FontFile" uid="uid://c1otpuieulf2y" path="res://assets/fonts/PixelOperator8.ttf" id="3_y4bt0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yqwbm"]
