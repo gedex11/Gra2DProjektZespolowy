@@ -597,10 +597,11 @@ tile_map_data = PackedByteArray("AAAJAPn/AQASAAIAAAAJAPr/AQASAAMAAAAJAPv/AQASAAQ
 tile_set = SubResource("TileSet_iywne")
 
 [node name="Player_1" parent="." instance=ExtResource("1_k7amg")]
+z_index = 10
 
 [node name="Camera2D" type="Camera2D" parent="Player_1"]
 zoom = Vector2(4, 4)
 
 [node name="LukeNPC" parent="." instance=ExtResource("7_nnv6e")]
 z_index = 3
-position = Vector2(-31, -92)
+position = Vector2(-32, -92)

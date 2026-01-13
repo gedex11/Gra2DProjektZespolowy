@@ -22,7 +22,7 @@ texture = ExtResource("1_sl741")
 [node name="InteractArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractArea"]
-position = Vector2(0, 17.875)
+position = Vector2(0, 9)
 shape = SubResource("RectangleShape2D_sl741")
 
 [node name="DialogLabel" type="Label" parent="."]
