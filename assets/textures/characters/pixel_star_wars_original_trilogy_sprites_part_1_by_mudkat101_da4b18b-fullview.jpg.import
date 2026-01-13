@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cf5qkivqqmigq"
-path="res://.godot/imported/postac1.png-05775623ce6846fc042e9b575bd96996.ctex"
+uid="uid://caku32lpemyow"
+path="res://.godot/imported/pixel_star_wars_original_trilogy_sprites_part_1_by_mudkat101_da4b18b-fullview.jpg-ae5264056908892fbe48b686ab9191e2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/postac1.png"
-dest_files=["res://.godot/imported/postac1.png-05775623ce6846fc042e9b575bd96996.ctex"]
+source_file="res://assets/textures/characters/pixel_star_wars_original_trilogy_sprites_part_1_by_mudkat101_da4b18b-fullview.jpg"
+dest_files=["res://.godot/imported/pixel_star_wars_original_trilogy_sprites_part_1_by_mudkat101_da4b18b-fullview.jpg-ae5264056908892fbe48b686ab9191e2.ctex"]
 
 [params]
 
