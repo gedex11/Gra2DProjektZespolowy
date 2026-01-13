@@ -10,6 +10,8 @@ PixelOperator8.ttf::FontFile::6627834063337362906::1768344634::1768344634::1::::
 ::res://assets/textures/characters/::1768262946
 pixel_star_wars_original_trilogy_sprites_part_1_by_mudkat101_da4b18b-fullview.jpg::CompressedTexture2D::4794750922822145298::1768263128::1768263128::1::::<><><>0<>0<>25b7bff24206e5d4810e29d36dc17820<>res://.godot/imported/pixel_star_wars_original_trilogy_sprites_part_1_by_mudkat101_da4b18b-fullview.jpg-ae5264056908892fbe48b686ab9191e2.ctex::
 pix_star_wars_original_trilogy_sprites_part_2_by_mudkat101_da4b3go-fullview.jpg::CompressedTexture2D::1340522952233631086::1768263128::1768263128::1::::<><><>0<>0<>36211802418b85b43250d9e4b2edd045<>res://.godot/imported/pix_star_wars_original_trilogy_sprites_part_2_by_mudkat101_da4b3go-fullview.jpg-2eb7b559d9d1ec43dfefde105f91f20f.ctex::
+::res://assets/textures/characters/npc/::1768346357
+orange_general.png::CompressedTexture2D::5970741098008038958::1768346372::1768346372::1::::<><><>0<>0<>829dd92f8deef6bfcf5f2b2ba5ed8006<>res://.godot/imported/orange_general.png-be36d88cd72dd42d2a02e4c5faae93ad.ctex::
 ::res://assets/textures/characters/player/::1768262953
 luke_tatooine.png::CompressedTexture2D::9204357145241459367::1768263136::1768263136::1::::<><><>0<>0<>02231ee95b4d21612dbe66eab2f441ff<>res://.godot/imported/luke_tatooine.png-a1c2d4204792781eed134f3b9a0432ec.ctex::
 postac1.png::CompressedTexture2D::5186706701397992860::1768262782::1768262958::1::::<><><>0<>0<>97e40b17f587402ed77895b7d9822cbd<>res://.godot/imported/postac1.png-e7f497058334a16156ab07451a824b0c.ctex::
@@ -22,11 +24,11 @@ neo_zero_tileset_02.png::CompressedTexture2D::6581098018979113124::1768262782::1
 neo_zero_tiles_and_buildings_01.png::CompressedTexture2D::8064515445008819581::1768262782::1768263060::1::::<><><>0<>0<>6d0bc3b6f5b3148d7014996389116501<>res://.godot/imported/neo_zero_tiles_and_buildings_01.png-ad7c4b48449590f94bee8f970b3150d0.ctex::
 ::res://scenes/::1768262780
 ::res://scenes/characters/::1768262847
-luke_npc.gd::GDScript::8550612022402039659::1768344634::0::1::::<>StaticBody2D<><>0<>0<><>::
-luke_npc.tscn::PackedScene::4805261574631737689::1768344796::0::1::::<><><>0<>0<><>::uid://d4ewogr3kc7m6::::res://assets/textures/characters/player/luke_tatooine.png<>uid://dt28lil0w8yrb::::res://scenes/characters/luke_npc.gd<>uid://c1otpuieulf2y::::res://assets/fonts/PixelOperator8.ttf
-player_1.tscn::PackedScene::4573564310584700637::1768344634::0::1::::<><><>0<>0<><>::uid://cf5qkivqqmigq::::res://assets/textures/characters/player/postac1.png<>uid://dhqesdi12neno::::res://scripts/player.gd
+npc_1.tscn::PackedScene::4805261574631737689::1768345732::0::1::::<><><>0<>0<><>::uid://d4ewogr3kc7m6::::res://assets/textures/characters/player/luke_tatooine.png<>uid://dt28lil0w8yrb::::res://scripts/npc_1.gd<>uid://c1otpuieulf2y::::res://assets/fonts/PixelOperator8.ttf
+player_1.tscn::PackedScene::4573564310584700637::1768345740::0::1::::<><><>0<>0<><>::uid://cf5qkivqqmigq::::res://assets/textures/characters/player/postac1.png<>uid://dhqesdi12neno::::res://scripts/player_mele.gd
 ::res://scenes/levels/::1768262891
-game_level_1.tscn::PackedScene::395042960679493309::1768344634::0::1::::<><><>0<>0<><>::uid://b6fp63aede6ib::::res://scenes/characters/player_1.tscn<>uid://dm5rnkfk6ga4d::::res://assets/textures/map_tilesets/neo_zero/neo_zero_tiles_and_buildings_01.png<>uid://c006ytvmxp31y::::res://assets/textures/map_tilesets/neo_zero/neo_zero_tileset_02.png<>uid://8h3iyw4ule6o::::res://assets/textures/map_tilesets/neo_zero/neo_zero_props_and_items_01.png<>uid://c0n27err5nd8x::::res://assets/textures/map_tilesets/neo_zero/neo_zero_buildings_02.png<>uid://0vid670l5ybh::::res://assets/textures/map_tilesets/neo_zero/neo_zero_props_02_free.png<>uid://capx7rhvxpa5v::::res://scenes/characters/luke_npc.tscn
+game_level_1.tscn::PackedScene::395042960679493309::1768345756::0::1::::<><><>0<>0<><>::uid://b6fp63aede6ib::::res://scenes/characters/player_1.tscn<>uid://dm5rnkfk6ga4d::::res://assets/textures/map_tilesets/neo_zero/neo_zero_tiles_and_buildings_01.png<>uid://c006ytvmxp31y::::res://assets/textures/map_tilesets/neo_zero/neo_zero_tileset_02.png<>uid://8h3iyw4ule6o::::res://assets/textures/map_tilesets/neo_zero/neo_zero_props_and_items_01.png<>uid://c0n27err5nd8x::::res://assets/textures/map_tilesets/neo_zero/neo_zero_buildings_02.png<>uid://0vid670l5ybh::::res://assets/textures/map_tilesets/neo_zero/neo_zero_props_02_free.png<>uid://capx7rhvxpa5v::::res://scenes/characters/npc_1.tscn
 hub.tscn::PackedScene::4657204110356328448::1768344634::0::1::::<><><>0<>0<><>::
 ::res://scripts/::1768262780
-player.gd::GDScript::7683889184018244144::1768344634::0::1::::<>CharacterBody2D<><>0<>0<><>::
+npc_1.gd::GDScript::8550612022402039659::1768344634::0::1::::<>StaticBody2D<><>0<>0<><>::
+player_mele.gd::GDScript::7683889184018244144::1768344634::0::1::::<>CharacterBody2D<><>0<>0<><>::

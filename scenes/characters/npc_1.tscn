@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://capx7rhvxpa5v"]
 
-[ext_resource type="Texture2D" uid="uid://d4ewogr3kc7m6" path="res://assets/textures/characters/player/luke_tatooine.png" id="1_sl741"]
-[ext_resource type="Script" uid="uid://dt28lil0w8yrb" path="res://scripts/luke_npc.gd" id="1_yqwbm"]
+[ext_resource type="Script" uid="uid://dt28lil0w8yrb" path="res://scripts/npc_1.gd" id="1_yqwbm"]
+[ext_resource type="Texture2D" uid="uid://crcjh68muo20a" path="res://assets/textures/characters/npc/orange_general.png" id="2_kbhas"]
 [ext_resource type="FontFile" uid="uid://c1otpuieulf2y" path="res://assets/fonts/PixelOperator8.ttf" id="3_y4bt0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yqwbm"]
@@ -10,14 +10,14 @@ radius = 5.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sl741"]
 size = Vector2(50, 35.75)
 
-[node name="LukeNPC" type="StaticBody2D"]
+[node name="NPC_1" type="StaticBody2D"]
 script = ExtResource("1_yqwbm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_yqwbm")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_sl741")
+texture = ExtResource("2_kbhas")
 
 [node name="InteractArea" type="Area2D" parent="."]
 

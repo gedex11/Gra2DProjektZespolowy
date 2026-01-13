@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://8h3iyw4ule6o" path="res://assets/textures/map_tilesets/neo_zero/neo_zero_props_and_items_01.png" id="4_bj8uj"]
 [ext_resource type="Texture2D" uid="uid://c0n27err5nd8x" path="res://assets/textures/map_tilesets/neo_zero/neo_zero_buildings_02.png" id="5_txpe8"]
 [ext_resource type="Texture2D" uid="uid://0vid670l5ybh" path="res://assets/textures/map_tilesets/neo_zero/neo_zero_props_02_free.png" id="6_f8fi1"]
-[ext_resource type="PackedScene" uid="uid://capx7rhvxpa5v" path="res://scenes/characters/luke_npc.tscn" id="7_nnv6e"]
+[ext_resource type="PackedScene" uid="uid://capx7rhvxpa5v" path="res://scenes/characters/npc_1.tscn" id="7_nnv6e"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_e2o6t"]
 texture = ExtResource("2_nnv6e")
@@ -596,12 +596,12 @@ z_index = 6
 tile_map_data = PackedByteArray("AAAJAPn/AQASAAIAAAAJAPr/AQASAAMAAAAJAPv/AQASAAQAAAAJAPz/AQASAAUAAAAJAP3/AQASAAYAAAAKAPn/AQATAAIAAAAKAPr/AQATAAMAAAAKAPv/AQATAAQAAAAKAPz/AQATAAUAAAAKAP3/AQATAAYAAAALAPn/AQAUAAIAAAALAPr/AQAUAAMAAAALAPv/AQAUAAQAAAALAPz/AQAUAAUAAAALAP3/AQAUAAYAAAD3//n/AQAAAAUAAAD3//r/AQAAAAYAAAD4//n/AQABAAUAAAD4//r/AQABAAYAAAD5//n/AQACAAUAAAD5//r/AQACAAYAAAACAPb/AgAJAAEAAAACAPf/AgAJAAIAAAD+//b/AgAJAAEAAAD+//f/AgAJAAIAAAD+//v/AgAJAAEAAAD+//z/AgAJAAIAAAACAPv/AgAJAAEAAAACAPz/AgAJAAIAAAAFAP3/AgAHAAQAAAAGAP3/AgAIAAQAAAAHAP3/AgAJAAQAAAAGAPz/AgAIAAMAAAAHAPz/AgAJAAMAAAAIAPn/AgACAAEAAAAIAPr/AgACAAIAAAD2//n/AgACAAEAAAD2//r/AgACAAIAAAAMAPv/AgAIAAEAAAAMAPz/AgAIAAIAAAAMAPn/AgAIAAEAAAAMAPr/AgAIAAIAAAAIAPz/AgALAAUAAAAGAPb/AgABAAQAAAAGAPf/AgABAAUAAAAHAPb/AgACAAQAAAAHAPf/AgACAAUAAAD0//b/AgABAAQAAAD0//f/AgABAAUAAAD1//b/AgACAAQAAAD1//f/AgACAAUAAAA=")
 tile_set = SubResource("TileSet_iywne")
 
-[node name="Player_1" parent="." instance=ExtResource("1_k7amg")]
+[node name="Player_mele" parent="." instance=ExtResource("1_k7amg")]
 z_index = 10
 
-[node name="Camera2D" type="Camera2D" parent="Player_1"]
+[node name="Camera2D" type="Camera2D" parent="Player_mele"]
 zoom = Vector2(4, 4)
 
-[node name="LukeNPC" parent="." instance=ExtResource("7_nnv6e")]
+[node name="NPC_1" parent="." instance=ExtResource("7_nnv6e")]
 z_index = 3
 position = Vector2(-32, -92)
