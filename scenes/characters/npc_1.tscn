@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://capx7rhvxpa5v"]
 
-[ext_resource type="Script" uid="uid://dt28lil0w8yrb" path="res://scripts/npc_1.gd" id="1_yqwbm"]
+[ext_resource type="Script" uid="uid://dt28lil0w8yrb" path="res://scripts/npc/npc_1.gd" id="1_yqwbm"]
 [ext_resource type="Texture2D" uid="uid://crcjh68muo20a" path="res://assets/textures/characters/npc/orange_general.png" id="2_kbhas"]
 [ext_resource type="FontFile" uid="uid://c1otpuieulf2y" path="res://assets/fonts/PixelOperator8.ttf" id="3_y4bt0"]
 

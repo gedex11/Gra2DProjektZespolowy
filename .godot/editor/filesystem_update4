@@ -1,4 +1,9 @@
-res://scenes/characters/luke_npc.tscn
 res://scenes/levels/game_level_1.tscn
-res://scenes/characters/player_1.tscn
+res://scenes/characters/player.tscn
+res://scripts/player.gd
+res://scripts/Inventory.gd
+res://scripts/Item.gd
 res://scenes/characters/npc_1.tscn
+res://scripts/inventory/WeaponItem.gd
+res://scripts/inventory/Inventory.gd
+res://scripts/player/player.gd
