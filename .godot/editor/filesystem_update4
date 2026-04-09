@@ -1,9 +1,8 @@
-res://scenes/levels/game_level_1.tscn
+res://interaction/interaction_area/interaction_area.gd
 res://scenes/characters/player.tscn
-res://scripts/player.gd
-res://scripts/Inventory.gd
-res://scripts/Item.gd
+res://interaction/interaction_manager.gd
+res://interaction/interaction_area/interaction_area.tscn
+res://interaction/InteractionManager.tscn
 res://scenes/characters/npc_1.tscn
-res://scripts/inventory/WeaponItem.gd
-res://scripts/inventory/Inventory.gd
-res://scripts/player/player.gd
+res://scripts/npc/npc_1.gd
+res://scenes/levels/hub.tscn
