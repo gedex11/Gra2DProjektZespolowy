@@ -1,8 +1,0 @@
-res://interaction/interaction_area/interaction_area.gd
-res://scenes/characters/player.tscn
-res://interaction/interaction_manager.gd
-res://interaction/interaction_area/interaction_area.tscn
-res://interaction/InteractionManager.tscn
-res://scenes/characters/npc_1.tscn
-res://scripts/npc/npc_1.gd
-res://scenes/levels/hub.tscn
