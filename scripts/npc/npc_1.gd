@@ -1,5 +1,7 @@
 extends StaticBody2D
 
+
+
 @onready var interaction_area: InteractionArea = $InteractionArea
 
 
@@ -13,6 +15,6 @@ func _ready():
 	
 
 
-#func _on_interact():
-	#DialogManager.start_dialog(global_position, lines)
-	#await DialogManager.dialog_finished
+func _on_interact():
+	DialogManager.start_dialog(global_position, lines)
+	await DialogManager.dialog_finished
