@@ -1,0 +1,92 @@
+[gd_scene load_steps=6 format=3 uid="uid://bvbhfk48b34yq"]
+
+[ext_resource type="FontFile" uid="uid://bfeotweyokn4y" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="1_7w7rl"]
+[ext_resource type="Script" uid="uid://c8yubteit3l6y" path="res://scenes/ui/menu.gd" id="1_c2n5p"]
+[ext_resource type="Texture2D" uid="uid://s8okmgvy081q" path="res://assets/textures/ui/background_menu.png" id="3_w6y0u"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cx0sj"]
+texture = ExtResource("3_w6y0u")
+modulate_color = Color(0.36862746, 0.5019608, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wedc3"]
+bg_color = Color(0.031673837, 0.25681433, 0.66904354, 1)
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_c2n5p")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_cx0sj")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+z_index = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -309.5
+offset_top = -170.5
+offset_right = 309.5
+offset_bottom = 170.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 25
+
+[node name="start" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/outline_size = 28
+theme_override_fonts/font = ExtResource("1_7w7rl")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_wedc3")
+text = "Start game"
+
+[node name="Options" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/outline_size = 28
+theme_override_fonts/font = ExtResource("1_7w7rl")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_wedc3")
+text = "Options"
+
+[node name="quit" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/outline_size = 28
+theme_override_fonts/font = ExtResource("1_7w7rl")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_wedc3")
+text = "Quit"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -278.25
+offset_top = 56.0
+offset_right = 281.75
+offset_bottom = 120.0
+grow_horizontal = 2
+theme_override_constants/line_spacing = 61
+theme_override_fonts/font = ExtResource("1_7w7rl")
+theme_override_font_sizes/font_size = 64
+text = "UMCS WARS"
+
+[connection signal="pressed" from="VBoxContainer/start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="VBoxContainer/quit" to="." method="_on_quit_pressed"]

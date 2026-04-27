@@ -1,7 +1,7 @@
 extends Node
 
 @onready var text_box_scene = preload("res://ui/text_box/text_box.tscn")
-@onready var player = get_tree().get_first_node_in_group("player")
+#@onready var player = get_tree().get_first_node_in_group("player")
 
 
 const max_distance: float = 30.0  
@@ -20,7 +20,8 @@ var can_advance_line = false
 signal dialog_finished
 
 func _process(_delta: float) -> void:
-	if is_dialog_active and player:
+	if is_dialog_active:
+		var player = get_tree().get_first_node_in_group("player")
 		var distance = player.global_position.distance_to(text_box_position)
 		
 		if distance > max_distance:
