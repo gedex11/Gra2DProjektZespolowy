@@ -1,37 +1,40 @@
 extends CharacterBody2D
 class_name Player
 
-const SPEED := 130.0
-@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+const BASE_SPEED := 130.0
 
-var level := 1
-var health := 150
-var armor := 12
-var attack_damage := 15
-var attack_speed := 1.0
+@export var stats: PlayerStats 
+
+@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
 var inventory: Inventory
 var equipped_weapon: WeaponItem
 
-func _ready():
+func _ready() -> void:
 	inventory = Inventory.new()
+	stats.changed.connect(_on_stats_changed)
+	stats.current_hp = stats.max_hp
 
 func _physics_process(delta: float) -> void:
-	var input_vector := Vector2.ZERO
-	input_vector.x = Input.get_axis("move_left", "move_right")
-	input_vector.y = Input.get_axis("move_up", "move_down")
-	input_vector = input_vector.normalized()
+	var input_vector := Vector2(
+		Input.get_axis("move_left", "move_right"),
+		Input.get_axis("move_up", "move_down")
+	).normalized()
 
-	velocity = input_vector * SPEED
+	velocity = input_vector * BASE_SPEED * stats.speed_multiplier
 
 	if velocity.x > 0:
 		animated_sprite_2d.flip_h = false
 	elif velocity.x < 0:
 		animated_sprite_2d.flip_h = true
 
-	if velocity == Vector2.ZERO:
-		animated_sprite_2d.play("idle")
-	else:
-		animated_sprite_2d.play("run")
-
+	animated_sprite_2d.play("run" if velocity != Vector2.ZERO else "idle")
 	move_and_slide()
+
+func _on_stats_changed() -> void:
+	pass
+	
+	
+func take_damage(amount: int) -> void:
+	stats.current_hp -= amount
+	print("Gracz oberwał! Zostało HP: ", stats.current_hp)

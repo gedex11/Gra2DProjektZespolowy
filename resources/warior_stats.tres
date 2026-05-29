@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="PlayerStats" load_steps=2 format=3 uid="uid://dc1k4ixnmetfw"]
+
+[ext_resource type="Script" uid="uid://cedwbdyrpfgt3" path="res://resources/player_stats.gd" id="1_kcnnw"]
+
+[resource]
+script = ExtResource("1_kcnnw")
+class_name_str = null
+max_hp = null
+armor = null
+attack_damage = null
+attack_speed = null
+speed_multiplier = null
+crit_chance = null
+crit_damage = null
+life_steal = null
+dodge_chance = null
+metadata/_custom_type_script = "uid://cedwbdyrpfgt3"
