@@ -3,17 +3,24 @@ class_name Player
 
 const BASE_SPEED := 130.0
 
-@export var stats: PlayerStats 
-
+@export var stats: PlayerStats
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
 var inventory: Inventory
 var equipped_weapon: WeaponItem
 
+
 func _ready() -> void:
 	inventory = Inventory.new()
+
+	if stats == null:
+		push_error("Brak przypisanego PlayerStats w Inspectorze!")
+		return
+
 	stats.changed.connect(_on_stats_changed)
 	stats.current_hp = stats.max_hp
+	stats.emit_changed()
+
 
 func _physics_process(delta: float) -> void:
 	var input_vector := Vector2(
@@ -31,10 +38,22 @@ func _physics_process(delta: float) -> void:
 	animated_sprite_2d.play("run" if velocity != Vector2.ZERO else "idle")
 	move_and_slide()
 
+
 func _on_stats_changed() -> void:
-	pass
-	
-	
+	print("HP:", stats.current_hp, "/", stats.max_hp)
+
+
 func take_damage(amount: int) -> void:
-	stats.current_hp -= amount
-	print("Gracz oberwał! Zostało HP: ", stats.current_hp)
+	stats.take_damage(amount)
+
+	if stats.current_hp <= 0:
+		die()
+
+
+func heal(amount: int) -> void:
+	stats.heal(amount)
+
+
+func die() -> void:
+	print("Gracz umarł")
+	
