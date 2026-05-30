@@ -55,5 +55,21 @@ func heal(amount: int) -> void:
 
 
 func die() -> void:
+	animated_sprite_2d.play("die")
 	print("Gracz umarł")
+	set_physics_process(false)
+	set_process_input(false)
 	
+	animated_sprite_2d.play("die")
+	await animated_sprite_2d.animation_finished
+	
+	
+	#dodac przeniesienie do huba 
+	
+	
+
+func _unhandled_key_input(event: InputEvent) -> void:
+	
+	if event.is_pressed() and event.keycode == KEY_K:
+		print("DEBUG: Wymusza testowe obrażenia!")
+		take_damage(9999)

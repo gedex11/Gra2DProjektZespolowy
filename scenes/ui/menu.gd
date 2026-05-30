@@ -53,7 +53,7 @@ func _on_continue_pressed() -> void:
 
 func _on_start_pressed() -> void:
 	get_tree().paused = false
-	get_tree().change_scene_to_file("res://scenes/levels/game_level_1.tscn")
+	get_tree().change_scene_to_file("uid://fvmkgve4iwtp")
 
 
 func _on_quit_pressed() -> void:
