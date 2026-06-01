@@ -1,12 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://b6fp63aede6ib"]
+[gd_scene load_steps=15 format=3 uid="uid://b6fp63aede6ib"]
 
 [ext_resource type="Texture2D" uid="uid://cf5qkivqqmigq" path="res://assets/textures/characters/player/postac1.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://dhqesdi12neno" path="res://scripts/player/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://chat8kfu0rhtg" path="res://assets/textures/characters/player/postac1_2.png" id="3_76oj4"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_dyp2m"]
-atlas = ExtResource("1_3vyb7")
-region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_atpat"]
 atlas = ExtResource("3_76oj4")
@@ -47,9 +43,6 @@ region = Rect2(48, 16, 16, 16)
 [sub_resource type="SpriteFrames" id="SpriteFrames_dqkch"]
 animations = [{
 "frames": [{
-"duration": 1.01,
-"texture": SubResource("AtlasTexture_dyp2m")
-}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_atpat")
 }, {
@@ -96,6 +89,7 @@ animations = [{
 radius = 4.0
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
+z_index = 1
 collision_layer = 2
 script = ExtResource("1_g2els")
 
@@ -103,11 +97,12 @@ script = ExtResource("1_g2els")
 sprite_frames = SubResource("SpriteFrames_dqkch")
 animation = &"die"
 autoplay = "idle"
-frame = 4
-frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
 shape = SubResource("CircleShape2D_qlg0r")
 
 [node name="WeaponSocket" type="Node2D" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(4, 4)

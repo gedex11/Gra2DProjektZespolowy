@@ -53,8 +53,8 @@ func _on_continue_pressed() -> void:
 
 func _on_start_pressed() -> void:
 	get_tree().paused = false
-	get_tree().change_scene_to_file("uid://fvmkgve4iwtp")
-
+	#get_tree().change_scene_to_file("uid://fvmkgve4iwtp")
+	get_tree().change_scene_to_file("uid://b7l8qa14d52n1")
 
 func _on_quit_pressed() -> void:
 	get_tree().quit()
