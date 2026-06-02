@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=4 uid="uid://b7l8qa14d52n1"]
+[gd_scene load_steps=25 format=4 uid="uid://b7l8qa14d52n1"]
 
 [ext_resource type="Texture2D" uid="uid://0dyy4go73b56" path="res://assets/textures/map_tilesets/map02-tileset/PNG/Ground_rocks.png" id="1_4tcl0"]
 [ext_resource type="Texture2D" uid="uid://bbsxhb4euouob" path="res://assets/textures/map_tilesets/map02-tileset/PNG/Objects.png" id="2_dd0lh"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://b7npa7aw6ohbv" path="res://assets/textures/map_tilesets/map02-tileset/PNG/Animation5.png" id="6_plydf"]
 [ext_resource type="PackedScene" uid="uid://b6fp63aede6ib" path="res://scenes/characters/player.tscn" id="8_8a7m2"]
 [ext_resource type="Resource" uid="uid://dc1k4ixnmetfw" path="res://resources/warior_stats.tres" id="9_plydf"]
+[ext_resource type="PackedScene" uid="uid://kcwmexdvcyat" path="res://scenes/items/item_pickup.tscn" id="10_5ntmo"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bfxgj"]
 texture = ExtResource("1_4tcl0")
@@ -8645,3 +8646,7 @@ tile_set = SubResource("TileSet_ps2vj")
 z_index = 30
 position = Vector2(318, 132)
 stats = ExtResource("9_plydf")
+
+[node name="Item_pickup" parent="." instance=ExtResource("10_5ntmo")]
+z_index = 100
+position = Vector2(367, 70)

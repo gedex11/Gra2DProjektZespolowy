@@ -6,12 +6,12 @@ const BASE_SPEED := 130.0
 @export var stats: PlayerStats
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
-var inventory: Inventory
+var inventory: Inventory = Inventory.new()
 var equipped_weapon: WeaponItem
 
 
 func _ready() -> void:
-	inventory = Inventory.new()
+	#inventory = Inventory.new()
 
 	if stats == null:
 		push_error("Brak przypisanego PlayerStats w Inspectorze!")

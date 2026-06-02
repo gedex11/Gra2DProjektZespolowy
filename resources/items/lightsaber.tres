@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="WeaponItem" load_steps=4 format=3 uid="uid://g31aw4xjem2b"]
+
+[ext_resource type="Texture2D" uid="uid://h2hdubin3kd4" path="res://assets/textures/weapons/lightsabers/lightsabers.png" id="1_1c4cc"]
+[ext_resource type="Script" uid="uid://cyr734yjm8hlp" path="res://scripts/inventory/WeaponItem.gd" id="1_id3po"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_542tk"]
+atlas = ExtResource("1_1c4cc")
+region = Rect2(16, 0, 16, 32)
+
+[resource]
+script = ExtResource("1_id3po")
+damage = 30
+attack_speed = 1.0
+range = 50.0
+name = "Lightsaber"
+icon = SubResource("AtlasTexture_542tk")
+description = "Miecz Świetlny"
+metadata/_custom_type_script = "uid://cyr734yjm8hlp"
