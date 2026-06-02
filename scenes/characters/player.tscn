@@ -1,8 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://b6fp63aede6ib"]
+[gd_scene load_steps=19 format=3 uid="uid://b6fp63aede6ib"]
 
 [ext_resource type="Texture2D" uid="uid://cf5qkivqqmigq" path="res://assets/textures/characters/player/postac1.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://dhqesdi12neno" path="res://scripts/player/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://chat8kfu0rhtg" path="res://assets/textures/characters/player/postac1_2.png" id="3_76oj4"]
+[ext_resource type="PackedScene" uid="uid://bvbhfk48b34yq" path="res://scenes/ui/menu.tscn" id="4_atpat"]
+[ext_resource type="Script" uid="uid://dwm1hasvos1nn" path="res://scripts/player/health_bar.gd" id="5_kqtwu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_atpat"]
 atlas = ExtResource("3_76oj4")
@@ -88,6 +90,12 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_qlg0r"]
 radius = 4.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6eyoc"]
+bg_color = Color(0.9970636, 0.4886465, 0.42074928, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eojnx"]
+bg_color = Color(0.44171488, 0.0012289225, 0.011978541, 1)
+
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 z_index = 1
 collision_layer = 2
@@ -106,3 +114,19 @@ shape = SubResource("CircleShape2D_qlg0r")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(4, 4)
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Menu" parent="UI" instance=ExtResource("4_atpat")]
+visible = false
+
+[node name="Health_bar" type="ProgressBar" parent="UI"]
+z_index = -2
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 270.0
+offset_bottom = 50.0
+theme_override_styles/background = SubResource("StyleBoxFlat_6eyoc")
+theme_override_styles/fill = SubResource("StyleBoxFlat_eojnx")
+script = ExtResource("5_kqtwu")
+player_path = NodePath("../..")

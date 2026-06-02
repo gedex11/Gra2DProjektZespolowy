@@ -48,6 +48,7 @@ func take_damage(amount: int) -> void:
 
 	if stats.current_hp <= 0:
 		die()
+		
 
 
 func heal(amount: int) -> void:
@@ -60,7 +61,7 @@ func die() -> void:
 	set_physics_process(false)
 	set_process_input(false)
 	
-	animated_sprite_2d.play("die")
+	
 	await animated_sprite_2d.animation_finished
 	
 	
