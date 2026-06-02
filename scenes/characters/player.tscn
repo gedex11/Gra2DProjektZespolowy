@@ -1,10 +1,12 @@
-[gd_scene load_steps=19 format=3 uid="uid://b6fp63aede6ib"]
+[gd_scene load_steps=23 format=3 uid="uid://b6fp63aede6ib"]
 
 [ext_resource type="Texture2D" uid="uid://cf5qkivqqmigq" path="res://assets/textures/characters/player/postac1.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://dhqesdi12neno" path="res://scripts/player/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://chat8kfu0rhtg" path="res://assets/textures/characters/player/postac1_2.png" id="3_76oj4"]
 [ext_resource type="PackedScene" uid="uid://bvbhfk48b34yq" path="res://scenes/ui/menu.tscn" id="4_atpat"]
 [ext_resource type="Script" uid="uid://dwm1hasvos1nn" path="res://scripts/player/health_bar.gd" id="5_kqtwu"]
+[ext_resource type="Texture2D" uid="uid://bjkc7jeant8xw" path="res://assets/textures/inventory/Sample-InventorySlotsSet.png" id="6_kqtwu"]
+[ext_resource type="Script" uid="uid://b6ty0tt3ua0c5" path="res://scripts/inventory_panel/inventory_panel.gd" id="7_6eyoc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_atpat"]
 atlas = ExtResource("3_76oj4")
@@ -96,6 +98,14 @@ bg_color = Color(0.9970636, 0.4886465, 0.42074928, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eojnx"]
 bg_color = Color(0.44171488, 0.0012289225, 0.011978541, 1)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_qgnko"]
+atlas = ExtResource("6_kqtwu")
+region = Rect2(112.32254, 79.665924, 23.21814, 22.400589)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7vyk4"]
+atlas = ExtResource("6_kqtwu")
+region = Rect2(112.08774, 78.746765, 23.913055, 24.16478)
+
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 z_index = 1
 collision_layer = 2
@@ -130,3 +140,179 @@ theme_override_styles/background = SubResource("StyleBoxFlat_6eyoc")
 theme_override_styles/fill = SubResource("StyleBoxFlat_eojnx")
 script = ExtResource("5_kqtwu")
 player_path = NodePath("../..")
+
+[node name="Hot_bar" type="HBoxContainer" parent="UI"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -180.0
+offset_top = -78.0
+offset_right = 180.0
+offset_bottom = -14.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 4
+
+[node name="slot1" type="TextureButton" parent="UI/Hot_bar"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_qgnko")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="slot2" type="TextureButton" parent="UI/Hot_bar"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_qgnko")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="slot3" type="TextureButton" parent="UI/Hot_bar"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_qgnko")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="slot4" type="TextureButton" parent="UI/Hot_bar"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_qgnko")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="slot5" type="TextureButton" parent="UI/Hot_bar"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_qgnko")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Inventory_panel" type="Panel" parent="UI"]
+visible = false
+offset_left = 376.0
+offset_top = 190.0
+offset_right = 776.0
+offset_bottom = 450.0
+script = ExtResource("7_6eyoc")
+
+[node name="CenterContainer" type="CenterContainer" parent="UI/Inventory_panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Slot_grid" type="GridContainer" parent="UI/Inventory_panel/CenterContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+columns = 5
+
+[node name="Slot1" type="TextureButton" parent="UI/Inventory_panel/CenterContainer/Slot_grid"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_7vyk4")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Slot2" type="TextureButton" parent="UI/Inventory_panel/CenterContainer/Slot_grid"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_7vyk4")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Slot3" type="TextureButton" parent="UI/Inventory_panel/CenterContainer/Slot_grid"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_7vyk4")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Slot4" type="TextureButton" parent="UI/Inventory_panel/CenterContainer/Slot_grid"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_7vyk4")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Slot5" type="TextureButton" parent="UI/Inventory_panel/CenterContainer/Slot_grid"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_7vyk4")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Slot6" type="TextureButton" parent="UI/Inventory_panel/CenterContainer/Slot_grid"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_7vyk4")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Slot7" type="TextureButton" parent="UI/Inventory_panel/CenterContainer/Slot_grid"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_7vyk4")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Slot8" type="TextureButton" parent="UI/Inventory_panel/CenterContainer/Slot_grid"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_7vyk4")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Slot9" type="TextureButton" parent="UI/Inventory_panel/CenterContainer/Slot_grid"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_7vyk4")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Slot10" type="TextureButton" parent="UI/Inventory_panel/CenterContainer/Slot_grid"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_7vyk4")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Slot11" type="TextureButton" parent="UI/Inventory_panel/CenterContainer/Slot_grid"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_7vyk4")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Slot12" type="TextureButton" parent="UI/Inventory_panel/CenterContainer/Slot_grid"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_7vyk4")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Slot13" type="TextureButton" parent="UI/Inventory_panel/CenterContainer/Slot_grid"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_7vyk4")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Slot14" type="TextureButton" parent="UI/Inventory_panel/CenterContainer/Slot_grid"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_7vyk4")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Slot15" type="TextureButton" parent="UI/Inventory_panel/CenterContainer/Slot_grid"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_7vyk4")
+ignore_texture_size = true
+stretch_mode = 5

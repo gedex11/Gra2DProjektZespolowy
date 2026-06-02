@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=4 uid="uid://fvmkgve4iwtp"]
+[gd_scene load_steps=22 format=4 uid="uid://fvmkgve4iwtp"]
 
 [ext_resource type="PackedScene" uid="uid://b6fp63aede6ib" path="res://scenes/characters/player.tscn" id="1_hgdgd"]
 [ext_resource type="Resource" uid="uid://dc1k4ixnmetfw" path="res://resources/warior_stats.tres" id="2_x0xvm"]
@@ -8,8 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://8h3iyw4ule6o" path="res://assets/textures/map_tilesets/neo_zero/neo_zero_props_and_items_01.png" id="6_15q0k"]
 [ext_resource type="Texture2D" uid="uid://c0n27err5nd8x" path="res://assets/textures/map_tilesets/neo_zero/neo_zero_buildings_02.png" id="7_ri0r0"]
 [ext_resource type="Texture2D" uid="uid://0vid670l5ybh" path="res://assets/textures/map_tilesets/neo_zero/neo_zero_props_02_free.png" id="8_l1bwd"]
-[ext_resource type="PackedScene" uid="uid://bvbhfk48b34yq" path="res://scenes/ui/menu.tscn" id="9_qn4st"]
-[ext_resource type="Script" uid="uid://dwm1hasvos1nn" path="res://scripts/player/health_bar.gd" id="10_reyj4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_e2o6t"]
 texture = ExtResource("4_lo7ou")
@@ -1162,12 +1160,6 @@ sources/0 = SubResource("TileSetAtlasSource_lbhrr")
 sources/1 = SubResource("TileSetAtlasSource_vtaks")
 sources/2 = SubResource("TileSetAtlasSource_kvpfn")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_txpe8"]
-bg_color = Color(0.9970636, 0.4886465, 0.42074928, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f8fi1"]
-bg_color = Color(0.44171488, 0.0012289225, 0.011978541, 1)
-
 [node name="Game_Level_1" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_hgdgd")]
@@ -1194,19 +1186,3 @@ tile_set = SubResource("TileSet_ul0te")
 z_index = 4
 tile_map_data = PackedByteArray("AAAJAPn/AQASAAIAAAAJAPr/AQASAAMAAAAJAPv/AQASAAQAAAAJAPz/AQASAAUAAAAJAP3/AQASAAYAAAAKAPn/AQATAAIAAAAKAPr/AQATAAMAAAAKAPv/AQATAAQAAAAKAPz/AQATAAUAAAAKAP3/AQATAAYAAAALAPn/AQAUAAIAAAALAPr/AQAUAAMAAAALAPv/AQAUAAQAAAALAPz/AQAUAAUAAAALAP3/AQAUAAYAAAD3//n/AQAAAAUAAAD3//r/AQAAAAYAAAD4//n/AQABAAUAAAD4//r/AQABAAYAAAD5//n/AQACAAUAAAD5//r/AQACAAYAAAACAPb/AgAJAAEAAAACAPf/AgAJAAIAAAD+//b/AgAJAAEAAAD+//f/AgAJAAIAAAD+//z/AgAJAAIAAAACAPz/AgAJAAIAAAAFAP3/AgAHAAQAAAAGAP3/AgAIAAQAAAAHAP3/AgAJAAQAAAAGAPz/AgAIAAMAAAAHAPz/AgAJAAMAAAAIAPn/AgACAAEAAAAIAPr/AgACAAIAAAD2//n/AgACAAEAAAD2//r/AgACAAIAAAAMAPv/AgAIAAEAAAAMAPz/AgAIAAIAAAAMAPn/AgAIAAEAAAAMAPr/AgAIAAIAAAAIAPz/AgALAAUAAAAGAPb/AgABAAQAAAAGAPf/AgABAAUAAAAHAPb/AgACAAQAAAAHAPf/AgACAAUAAAD0//b/AgABAAQAAAD0//f/AgABAAUAAAD1//b/AgACAAQAAAD1//f/AgACAAUAAAA=")
 tile_set = SubResource("TileSet_iywne")
-
-[node name="UI" type="CanvasLayer" parent="."]
-
-[node name="Menu" parent="UI" instance=ExtResource("9_qn4st")]
-visible = false
-
-[node name="Health_bar" type="ProgressBar" parent="UI"]
-z_index = -2
-offset_left = 20.0
-offset_top = 20.0
-offset_right = 270.0
-offset_bottom = 50.0
-theme_override_styles/background = SubResource("StyleBoxFlat_txpe8")
-theme_override_styles/fill = SubResource("StyleBoxFlat_f8fi1")
-script = ExtResource("10_reyj4")
-player_path = NodePath("../../Player")
