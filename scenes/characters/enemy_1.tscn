@@ -1,8 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://rmm4c887mdub"]
+[gd_scene load_steps=20 format=3 uid="uid://rmm4c887mdub"]
 
 [ext_resource type="Script" uid="uid://6ylokplogjmn" path="res://scripts/enemy/enemy_1.gd" id="1_2ol6t"]
 [ext_resource type="Texture2D" uid="uid://ccsgq48i1ch5n" path="res://assets/textures/characters/player/postac_test.png" id="1_ln8tg"]
 [ext_resource type="Resource" uid="uid://c3prylt75d7oa" path="res://resources/enemy/enemy_stats_1.tres" id="2_4y65w"]
+[ext_resource type="Script" uid="uid://bmp3jid2k8rg3" path="res://scripts/enemy/enemy_health_bar.gd" id="4_4y65w"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3r8lf"]
 atlas = ExtResource("1_ln8tg")
@@ -80,6 +81,15 @@ radius = 4.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4y65w"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4y65w"]
+bg_color = Color(0.66504735, 0.75481176, 0.9415476, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0o106"]
+bg_color = Color(0.6898294, 0, 0.1809783, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e4wcf"]
+bg_color = Color(0.80784315, 0.8980392, 1, 1)
+
 [node name="Enemy_1" type="CharacterBody2D"]
 z_index = 2
 script = ExtResource("1_2ol6t")
@@ -106,3 +116,31 @@ shape = SubResource("CircleShape2D_2ol6t")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
 shape = SubResource("CircleShape2D_4y65w")
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+z_index = 30
+custom_minimum_size = Vector2(20, 3)
+offset_left = -8.0
+offset_top = -13.0
+offset_right = 12.0
+offset_bottom = -10.0
+theme_override_styles/background = SubResource("StyleBoxFlat_4y65w")
+theme_override_styles/fill = SubResource("StyleBoxFlat_0o106")
+show_percentage = false
+script = ExtResource("4_4y65w")
+
+[node name="DamageBar" type="ProgressBar" parent="HealthBar"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_e4wcf")
+show_percentage = false
+
+[node name="Timer" type="Timer" parent="HealthBar"]
+one_shot = true
+
+[connection signal="timeout" from="HealthBar/Timer" to="HealthBar" method="_on_timer_timeout"]

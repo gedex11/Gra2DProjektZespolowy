@@ -5,10 +5,13 @@ const BASE_SPEED := 130.0
 
 @export var stats: PlayerStats
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+@onready var hitbox: Area2D = $WeaponSocket/Hitbox
+@onready var hitbox_shape: CollisionShape2D = $WeaponSocket/Hitbox/AttackRange
 
 var inventory: Inventory = Inventory.new()
 var equipped_weapon: WeaponItem
-
+var can_attack: bool = true
+@export var attack_cooldown: float = 0.4
 
 func _ready() -> void:
 	#inventory = Inventory.new()
@@ -20,8 +23,8 @@ func _ready() -> void:
 	stats.changed.connect(_on_stats_changed)
 	stats.current_hp = stats.max_hp
 	stats.emit_changed()
-
-
+	hitbox_shape.disabled = true
+	
 func _physics_process(delta: float) -> void:
 	var input_vector := Vector2(
 		Input.get_axis("move_left", "move_right"),
@@ -74,3 +77,19 @@ func _unhandled_key_input(event: InputEvent) -> void:
 	if event.is_pressed() and event.keycode == KEY_K:
 		print("DEBUG: Wymusza testowe obrażenia!")
 		take_damage(9999)
+		
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("attack") and can_attack:
+		attack()
+
+func attack() -> void:
+	can_attack = false
+	var dmg := stats.attack_damage
+	if randf() < stats.crit_chance:
+		dmg = int(dmg * stats.crit_damage)
+	hitbox.set_meta("damage", dmg)                  
+	hitbox_shape.set_deferred("disabled", false)
+	await get_tree().create_timer(0.15).timeout
+	hitbox_shape.set_deferred("disabled", true)
+	await get_tree().create_timer(attack_cooldown).timeout
+	can_attack = true

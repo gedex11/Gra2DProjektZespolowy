@@ -1,9 +1,10 @@
-[gd_scene load_steps=28 format=3 uid="uid://b6fp63aede6ib"]
+[gd_scene load_steps=30 format=3 uid="uid://b6fp63aede6ib"]
 
 [ext_resource type="Texture2D" uid="uid://cf5qkivqqmigq" path="res://assets/textures/characters/player/postac1.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://dhqesdi12neno" path="res://scripts/player/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://chat8kfu0rhtg" path="res://assets/textures/characters/player/postac1_2.png" id="3_76oj4"]
 [ext_resource type="PackedScene" uid="uid://bvbhfk48b34yq" path="res://scenes/ui/menu.tscn" id="4_atpat"]
+[ext_resource type="Script" uid="uid://bcff75j4kdje1" path="res://scenes/characters/hitbox.gd" id="4_qgnko"]
 [ext_resource type="Script" uid="uid://dwm1hasvos1nn" path="res://scripts/player/health_bar.gd" id="5_kqtwu"]
 [ext_resource type="Script" uid="uid://dcclcvorw78r" path="res://scripts/hot_bar/hot_bar.gd" id="6_eojnx"]
 [ext_resource type="Texture2D" uid="uid://bjkc7jeant8xw" path="res://assets/textures/inventory/Sample-InventorySlotsSet.png" id="6_kqtwu"]
@@ -121,6 +122,9 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_qlg0r"]
 radius = 4.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_7vyk4"]
+radius = 20.024984
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6eyoc"]
 bg_color = Color(0.9970636, 0.4886465, 0.42074928, 1)
 
@@ -139,6 +143,7 @@ region = Rect2(112.08774, 78.746765, 23.913055, 24.16478)
 z_index = 1
 collision_layer = 2
 script = ExtResource("1_g2els")
+attack_cooldown = null
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_dqkch")
@@ -151,6 +156,12 @@ position = Vector2(0, 1)
 shape = SubResource("CircleShape2D_qlg0r")
 
 [node name="WeaponSocket" type="Node2D" parent="."]
+
+[node name="Hitbox" type="Area2D" parent="WeaponSocket"]
+script = ExtResource("4_qgnko")
+
+[node name="AttackRange" type="CollisionShape2D" parent="WeaponSocket/Hitbox"]
+shape = SubResource("CircleShape2D_7vyk4")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(4, 4)

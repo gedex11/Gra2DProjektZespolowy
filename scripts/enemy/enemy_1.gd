@@ -6,6 +6,7 @@ class_name Enemy
 @onready var hurtbox: Area2D = $HurtBox
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var contact_timer: Timer = $ContactTimer
+@onready var health_bar = $HealthBar
 
 const BASE_SPEED := 130.0
 
@@ -20,6 +21,7 @@ func _ready() -> void:
 	print(stats.max_hp)
 
 	current_hp = stats.max_hp
+	health_bar.init_health(stats.max_hp)
 
 	contact_timer.wait_time = 1.0 / stats.attack_speed
 	contact_timer.one_shot = false
@@ -70,6 +72,7 @@ func take_damage(raw_damage: int) -> void:
 		return
 	var mitigated := int(raw_damage * (100.0 / (100.0 + stats.armor)))
 	current_hp = max(0, current_hp - mitigated)
+	health_bar.take_damage(current_hp)
 
 	_flash_hit()
 
