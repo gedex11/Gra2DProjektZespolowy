@@ -4,6 +4,8 @@ class_name PlayerStats
 @export_category("Podstawowe")
 @export var class_name_str: String = "Wojownik"
 @export var level: int = 1
+@export var current_exp: int = 0
+@export var exp_to_next_level: int = 100
 @export var current_hp: int = 150
 @export var max_hp: int = 150
 @export var armor: int = 12
@@ -85,6 +87,7 @@ func apply_level(new_level: int) -> void:
 func level_up() -> void:
 	if level < 10:
 		apply_level(level + 1)
+		print("LEVEL UP! Aktualny level: ", level)
 
 func take_damage(raw_damage: int) -> void:
 	var mitigated := int(raw_damage * (100.0 / (100.0 + armor)))
@@ -97,3 +100,26 @@ func take_damage(raw_damage: int) -> void:
 func heal(amount: int) -> void:
 	current_hp = min(max_hp, current_hp + amount)
 	emit_changed()
+
+func add_exp(amount: int) -> void:
+	if level >= 10:
+		current_exp = 0
+		emit_changed()
+		return
+
+	current_exp += amount
+	print("Dodano EXP: ", amount, " | EXP: ", current_exp, "/", exp_to_next_level)
+
+	while current_exp >= exp_to_next_level and level < 10:
+		current_exp -= exp_to_next_level
+		level_up()
+		exp_to_next_level = get_exp_required_for_level(level)
+
+	if level >= 10:
+		current_exp = 0
+
+	emit_changed()
+
+
+func get_exp_required_for_level(current_level: int) -> int:
+	return 100 + (current_level - 1) * 75

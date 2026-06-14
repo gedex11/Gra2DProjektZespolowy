@@ -15,7 +15,6 @@ var can_attack: bool = true
 @export var attack_cooldown: float = 0.4
 
 func _ready() -> void:
-
 	if stats == null:
 		push_error("Brak przypisanego PlayerStats w Inspectorze!")
 		return
@@ -57,6 +56,9 @@ func take_damage(amount: int) -> void:
 
 func heal(amount: int) -> void:
 	stats.heal(amount)
+	
+func add_exp(amount: int) -> void:
+	stats.add_exp(amount)
 
 
 func die() -> void:
@@ -125,6 +127,7 @@ func attack() -> void:
 		dmg = int(dmg * stats.crit_damage)
 		
 	hitbox.set_meta("damage", dmg)
+	hitbox.set_meta("attacker", self)
 	hitbox_shape.set_deferred("disabled", false)
 	
 	await get_tree().create_timer(0.15).timeout
@@ -132,3 +135,4 @@ func attack() -> void:
 	hitbox_shape.set_deferred("disabled", true)
 	await get_tree().create_timer(attack_cooldown).timeout
 	can_attack = true
+	

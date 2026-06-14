@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://b6fp63aede6ib"]
+[gd_scene load_steps=33 format=3 uid="uid://b6fp63aede6ib"]
 
 [ext_resource type="Texture2D" uid="uid://cf5qkivqqmigq" path="res://assets/textures/characters/player/postac1.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://dhqesdi12neno" path="res://scripts/player/player.gd" id="1_g2els"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://dcclcvorw78r" path="res://scripts/hot_bar/hot_bar.gd" id="6_eojnx"]
 [ext_resource type="Texture2D" uid="uid://bjkc7jeant8xw" path="res://assets/textures/inventory/Sample-InventorySlotsSet.png" id="6_kqtwu"]
 [ext_resource type="Script" uid="uid://b6ty0tt3ua0c5" path="res://scripts/inventory_panel/inventory_panel.gd" id="7_6eyoc"]
+[ext_resource type="Script" uid="uid://cambalonm3803" path="res://scripts/player/exp_bar.gd" id="10_7vyk4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_atpat"]
 atlas = ExtResource("3_76oj4")
@@ -138,6 +139,12 @@ region = Rect2(112.32254, 79.665924, 23.21814, 22.400589)
 [sub_resource type="AtlasTexture" id="AtlasTexture_7vyk4"]
 atlas = ExtResource("6_kqtwu")
 region = Rect2(112.08774, 78.746765, 23.913055, 24.16478)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7vyk4"]
+bg_color = Color(0.2200863, 0.63461226, 0.9058552, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2l4js"]
+bg_color = Color(0.08235294, 0.05882353, 0.6627451, 1)
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 z_index = 1
@@ -563,3 +570,22 @@ grow_horizontal = 2
 grow_vertical = 2
 expand_mode = 1
 stretch_mode = 5
+
+[node name="Exp_bar" type="ProgressBar" parent="UI"]
+offset_left = 20.0
+offset_top = 54.0
+offset_right = 144.0
+offset_bottom = 70.0
+theme_override_styles/background = SubResource("StyleBoxFlat_7vyk4")
+theme_override_styles/fill = SubResource("StyleBoxFlat_2l4js")
+show_percentage = false
+script = ExtResource("10_7vyk4")
+player_path = NodePath("../..")
+exp_label_path = NodePath("../Exp_label")
+
+[node name="Exp_label" type="Label" parent="UI"]
+offset_left = 54.0
+offset_top = 54.0
+offset_right = 102.0
+offset_bottom = 77.0
+theme_override_font_sizes/font_size = 12

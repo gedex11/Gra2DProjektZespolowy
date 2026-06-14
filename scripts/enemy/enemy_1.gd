@@ -1,6 +1,7 @@
 extends CharacterBody2D
 class_name Enemy
 
+@export var exp_reward: int = 50
 @export var stats: EnemyStats
 @onready var detection_area: Area2D = $DetectionArea
 @onready var hurtbox: Area2D = $HurtBox
@@ -9,12 +10,14 @@ class_name Enemy
 @onready var health_bar = $HealthBar
 @onready var attack_area: Area2D = $AttackArea 
 
+
 const BASE_SPEED := 70.0
 
 var current_hp: int
 var target: Player = null
 var is_dead: bool = false
 var is_in_attack_range: bool = false 
+var last_attacker: Player = null
 
 func _ready() -> void:
 	current_hp = stats.max_hp
@@ -86,7 +89,13 @@ func _deal_damage_to_player() -> void:
 func _on_hit_by_player(area: Area2D) -> void:
 	if is_dead:
 		return
+
 	var dmg: int = area.get_meta("damage", 0)
+	var attacker = area.get_meta("attacker", null)
+
+	if attacker is Player:
+		last_attacker = attacker
+
 	take_damage(dmg)
 
 func take_damage(raw_damage: int) -> void:
@@ -110,5 +119,11 @@ func _die() -> void:
 	is_dead = true
 	contact_timer.stop()
 	velocity = Vector2.ZERO
+
+	if last_attacker != null:
+		last_attacker.add_exp(exp_reward)
+		print("Enemy dał EXP: ", exp_reward)
+
 	var credits := randi_range(stats.credits_drop_min, stats.credits_drop_max)
+
 	queue_free()

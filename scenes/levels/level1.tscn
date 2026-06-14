@@ -8652,4 +8652,5 @@ stats = ExtResource("9_plydf")
 position = Vector2(367, 70)
 
 [node name="Enemy_1" parent="." instance=ExtResource("11_nkeig")]
+z_index = 30
 position = Vector2(204, 106)
