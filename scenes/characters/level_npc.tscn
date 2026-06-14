@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=3 uid="uid://buoahujrl7u3e"]
+
+[ext_resource type="Script" uid="uid://c0wpf568sn35t" path="res://scripts/npc/level_npc.gd" id="1_ox8dn"]
+[ext_resource type="Texture2D" uid="uid://crcjh68muo20a" path="res://assets/textures/characters/npc/orange_general.png" id="2_q8p8h"]
+[ext_resource type="PackedScene" uid="uid://cuypx6mprnbi4" path="res://interaction/interaction_area/interaction_area.tscn" id="3_mow6e"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yqwbm"]
+radius = 5.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xf57r"]
+size = Vector2(45.5, 46)
+
+[node name="LevelNpc" type="StaticBody2D"]
+script = ExtResource("1_ox8dn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_yqwbm")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_q8p8h")
+
+[node name="InteractionArea" parent="." instance=ExtResource("3_mow6e")]
+action_name = "enter"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+shape = SubResource("RectangleShape2D_xf57r")

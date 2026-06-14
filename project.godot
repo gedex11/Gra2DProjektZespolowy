@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 InteractionManager="*res://interaction/InteractionManager.tscn"
 DialogManager="*res://scripts/singletons/DialogManager.gd"
+GameState="*res://scripts/singletons/GameState.gd"
 
 [global_group]
 
