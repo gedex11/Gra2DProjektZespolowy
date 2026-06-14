@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://rmm4c887mdub"]
+[gd_scene load_steps=21 format=3 uid="uid://rmm4c887mdub"]
 
 [ext_resource type="Script" uid="uid://6ylokplogjmn" path="res://scripts/enemy/enemy_1.gd" id="1_2ol6t"]
 [ext_resource type="Texture2D" uid="uid://ccsgq48i1ch5n" path="res://assets/textures/characters/player/postac_test.png" id="1_ln8tg"]
@@ -78,8 +78,10 @@ animations = [{
 radius = 4.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2ol6t"]
+radius = 8.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4y65w"]
+radius = 55.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4y65w"]
 bg_color = Color(0.66504735, 0.75481176, 0.9415476, 1)
@@ -89,6 +91,9 @@ bg_color = Color(0.6898294, 0, 0.1809783, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e4wcf"]
 bg_color = Color(0.80784315, 0.8980392, 1, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0o106"]
+radius = 9.0
 
 [node name="Enemy_1" type="CharacterBody2D"]
 z_index = 2
@@ -113,6 +118,7 @@ shape = SubResource("CircleShape2D_2ol6t")
 [node name="ContactTimer" type="Timer" parent="."]
 
 [node name="DetectionArea" type="Area2D" parent="."]
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
 shape = SubResource("CircleShape2D_4y65w")
@@ -142,5 +148,11 @@ show_percentage = false
 
 [node name="Timer" type="Timer" parent="HealthBar"]
 one_shot = true
+
+[node name="AttackArea" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+shape = SubResource("CircleShape2D_0o106")
 
 [connection signal="timeout" from="HealthBar/Timer" to="HealthBar" method="_on_timer_timeout"]

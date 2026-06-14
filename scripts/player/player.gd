@@ -1,7 +1,7 @@
 extends CharacterBody2D
 class_name Player
 
-const BASE_SPEED := 130.0
+const BASE_SPEED := 100.0
 
 @export var stats: PlayerStats
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
@@ -44,6 +44,7 @@ func _physics_process(delta: float) -> void:
 
 func _on_stats_changed() -> void:
 	print("HP:", stats.current_hp, "/", stats.max_hp)
+	print("AD: ", stats.attack_damage)
 
 
 func take_damage(amount: int) -> void:
