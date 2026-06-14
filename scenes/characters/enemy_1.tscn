@@ -95,7 +95,7 @@ bg_color = Color(0.80784315, 0.8980392, 1, 1)
 [sub_resource type="CircleShape2D" id="CircleShape2D_0o106"]
 radius = 9.0
 
-[node name="Enemy_1" type="CharacterBody2D"]
+[node name="Enemy_1" type="CharacterBody2D" groups=["minimap_enemy"]]
 z_index = 2
 script = ExtResource("1_2ol6t")
 stats = ExtResource("2_4y65w")

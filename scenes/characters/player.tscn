@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://b6fp63aede6ib"]
+[gd_scene load_steps=34 format=3 uid="uid://b6fp63aede6ib"]
 
 [ext_resource type="Texture2D" uid="uid://cf5qkivqqmigq" path="res://assets/textures/characters/player/postac1.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://dhqesdi12neno" path="res://scripts/player/player.gd" id="1_g2els"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://bjkc7jeant8xw" path="res://assets/textures/inventory/Sample-InventorySlotsSet.png" id="6_kqtwu"]
 [ext_resource type="Script" uid="uid://b6ty0tt3ua0c5" path="res://scripts/inventory_panel/inventory_panel.gd" id="7_6eyoc"]
 [ext_resource type="Script" uid="uid://cambalonm3803" path="res://scripts/player/exp_bar.gd" id="10_7vyk4"]
+[ext_resource type="Script" uid="uid://dpq8rnlmxs87t" path="res://scripts/player/minimap.gd" id="11_2l4js"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_atpat"]
 atlas = ExtResource("3_76oj4")
@@ -589,3 +590,17 @@ offset_top = 54.0
 offset_right = 102.0
 offset_bottom = 77.0
 theme_override_font_sizes/font_size = 12
+
+[node name="Minimap" type="Panel" parent="UI"]
+offset_left = 930.0
+offset_top = 20.0
+offset_right = 1130.0
+offset_bottom = 160.0
+script = ExtResource("11_2l4js")
+player_path = NodePath("../..")
+
+[node name="Player_dot" type="ColorRect" parent="UI/Minimap"]
+layout_mode = 0
+offset_right = 6.0
+offset_bottom = 6.0
+color = Color(0.34901962, 0.5176471, 1, 1)
