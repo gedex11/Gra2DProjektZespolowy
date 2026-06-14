@@ -143,7 +143,6 @@ region = Rect2(112.08774, 78.746765, 23.913055, 24.16478)
 z_index = 1
 collision_layer = 2
 script = ExtResource("1_g2els")
-attack_cooldown = null
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_dqkch")
@@ -162,6 +161,10 @@ script = ExtResource("4_qgnko")
 
 [node name="AttackRange" type="CollisionShape2D" parent="WeaponSocket/Hitbox"]
 shape = SubResource("CircleShape2D_7vyk4")
+
+[node name="WeaponSprite" type="Sprite2D" parent="WeaponSocket"]
+scale = Vector2(0.5, 0.5)
+offset = Vector2(10, -10)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(4, 4)

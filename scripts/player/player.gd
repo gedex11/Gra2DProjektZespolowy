@@ -7,6 +7,7 @@ const BASE_SPEED := 100.0
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var hitbox: Area2D = $WeaponSocket/Hitbox
 @onready var hitbox_shape: CollisionShape2D = $WeaponSocket/Hitbox/AttackRange
+@onready var weapon_sprite: Sprite2D = $WeaponSocket/WeaponSprite
 
 var inventory: Inventory = Inventory.new()
 var equipped_weapon: WeaponItem
@@ -14,7 +15,6 @@ var can_attack: bool = true
 @export var attack_cooldown: float = 0.4
 
 func _ready() -> void:
-	#inventory = Inventory.new()
 
 	if stats == null:
 		push_error("Brak przypisanego PlayerStats w Inspectorze!")
@@ -80,17 +80,55 @@ func _unhandled_key_input(event: InputEvent) -> void:
 		take_damage(9999)
 		
 func _unhandled_input(event: InputEvent) -> void:
+	
 	if event.is_action_pressed("attack") and can_attack:
 		attack()
 
+	if event is InputEventKey:
+		
+		if event.is_pressed() and event.keycode == KEY_K:
+			print("DEBUG: Wymusza testowe obrażenia!")
+			take_damage(9999)
+			
+		if event.is_pressed() and event.keycode >= KEY_1 and event.keycode <= KEY_9:
+			var slot_index = event.keycode - KEY_1 
+			_equip_weapon_from_slot(slot_index)
+		
+func _equip_weapon_from_slot(slot_index: int) -> void:
+	var item = inventory.get_item(slot_index)
+	
+	if item != null and item is WeaponItem:
+		if equipped_weapon == item:
+			equipped_weapon = null
+			weapon_sprite.visible = false
+			print("Schowano broń.")
+		else:
+			equipped_weapon = item
+			
+			# TUTAJ ZMIANA: używamy 'icon' zamiast 'texture'
+			weapon_sprite.texture = item.icon 
+			
+			weapon_sprite.visible = true
+			print("Wyciągnięto broń ze slotu ", slot_index + 1, ": ", item.name)
+
 func attack() -> void:
+	if equipped_weapon == null:
+		print("Nie masz wyciągniętej broni!")
+		return
+		
 	can_attack = false
-	var dmg := stats.attack_damage
+	
+	
+	var dmg := stats.attack_damage + equipped_weapon.damage 
+	
 	if randf() < stats.crit_chance:
 		dmg = int(dmg * stats.crit_damage)
-	hitbox.set_meta("damage", dmg)                  
+		
+	hitbox.set_meta("damage", dmg)
 	hitbox_shape.set_deferred("disabled", false)
+	
 	await get_tree().create_timer(0.15).timeout
+	
 	hitbox_shape.set_deferred("disabled", true)
 	await get_tree().create_timer(attack_cooldown).timeout
 	can_attack = true
