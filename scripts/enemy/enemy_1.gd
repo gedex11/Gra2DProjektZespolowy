@@ -124,6 +124,9 @@ func _die() -> void:
 		last_attacker.add_exp(exp_reward)
 		print("Enemy dał EXP: ", exp_reward)
 
+	if QuestManager != null:
+		QuestManager.on_enemy_killed("skeleton")
+
 	var credits := randi_range(stats.credits_drop_min, stats.credits_drop_max)
 
 	queue_free()

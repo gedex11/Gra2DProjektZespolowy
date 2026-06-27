@@ -101,7 +101,7 @@ func die() -> void:
 	
 	# Przeniesienie do huba
 	if get_tree() != null:
-		get_tree().change_scene_to_file("res://scenes/levels/hub.tscn")
+		get_tree().call_deferred("change_scene_to_file", "res://scenes/levels/hub.tscn")
 
 
 func _unhandled_key_input(event: InputEvent) -> void:

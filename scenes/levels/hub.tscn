@@ -1195,4 +1195,14 @@ level_scene = "uid://b7l8qa14d52n1"
 [node name="LevelNpc" parent="." instance=ExtResource("9_frsds")]
 position = Vector2(-128, 17)
 level_scene = "uid://be6dijlndbsjv"
-requires_level2_unlock = true
+required_level_to_unlock = 2
+
+[node name="LevelNpc3" parent="." instance=ExtResource("9_frsds")]
+position = Vector2(-128, 77)
+level_scene = "res://scenes/levels/level_3.tscn"
+required_level_to_unlock = 3
+
+[node name="LevelNpc4" parent="." instance=ExtResource("9_frsds")]
+position = Vector2(-128, 137)
+level_scene = "res://scenes/levels/level_4.tscn"
+required_level_to_unlock = 4

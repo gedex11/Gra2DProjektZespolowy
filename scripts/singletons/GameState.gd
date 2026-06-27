@@ -2,6 +2,8 @@ extends Node
 
 #  stan postępu gry
 var level2_unlocked: bool = false
+var level3_unlocked: bool = false
+var level4_unlocked: bool = false
 
 # --- Globalny postęp fal (rośnie przez cały czas gry, niezależnie od poziomu) ---
 var global_wave_index: int = 0     # ile fal łącznie już zrespawniono

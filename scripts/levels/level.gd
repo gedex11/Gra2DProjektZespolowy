@@ -34,7 +34,9 @@ func _ready() -> void:
 		elif "3" in s_name: _level_number = 3
 		elif "4" in s_name: _level_number = 4
 		
-	var difficulty_mult = 1.0 + (_level_number - 1) * 0.25 # +25% statystyk na poziom
+	var difficulty_mult = 1.0 + (_level_number - 1) * 0.1 # +10% statystyk na poziom
+	
+	enemies_per_wave += (_level_number - 1) # Dodaj +1 przeciwnika na falę co poziom
 	
 	# Podłącz się pod zniknięcie przeciwnika startowego i przeskaluj mu statystyki
 	for enemy in get_tree().get_nodes_in_group("minimap_enemy"):
@@ -70,10 +72,12 @@ func _spawn_chest() -> void:
 		add_child(chest)
 
 func _on_enemy_removed() -> void:
+	if _level_finished or _is_busy: return
+	
 	# Poczekaj klatkę, aż wróg zostanie usunięty z drzewa, potem policz pozostałych.
-	if get_tree() == null: return
+	if not is_inside_tree(): return
 	await get_tree().process_frame
-	if get_tree() == null: return
+	if not is_inside_tree(): return
 
 	if _level_finished or _is_busy:
 		return
@@ -108,7 +112,7 @@ func _spawn_wave() -> void:
 
 		# Własna kopia statystyk — skalujemy o mnożnik fali ORAZ mnożnik poziomu.
 		var s: EnemyStats = enemy.stats.duplicate()
-		var diff_mult = 1.0 + (_level_number - 1) * 0.25
+		var diff_mult = 1.0 + (_level_number - 1) * 0.1
 		s.max_hp = max(1, int(round(s.max_hp * GameState.wave_hp_mult * diff_mult)))
 		s.attack_damage = max(1, int(round(s.attack_damage * GameState.wave_dmg_mult * diff_mult)))
 		enemy.stats = s
@@ -131,7 +135,8 @@ func _complete_level() -> void:
 		return
 	_level_finished = true
 
-	if unlocks_level2:
-		GameState.level2_unlocked = true
+	if _level_number == 1: GameState.level2_unlocked = true
+	elif _level_number == 2: GameState.level3_unlocked = true
+	elif _level_number == 3: GameState.level4_unlocked = true
 
-	get_tree().change_scene_to_file(HUB_SCENE)
+	get_tree().call_deferred("change_scene_to_file", HUB_SCENE)

@@ -101,7 +101,7 @@ func update_enemy_dots() -> void:
 	var enemies := get_tree().get_nodes_in_group("minimap_enemy")
 
 	for enemy in enemies:
-		if not is_instance_valid(enemy):
+		if not is_instance_valid(enemy) or enemy.is_queued_for_deletion() or not enemy.is_inside_tree():
 			continue
 
 		if not enemy_dots.has(enemy):
@@ -128,7 +128,7 @@ func update_item_dots() -> void:
 	var items := get_tree().get_nodes_in_group("minimap_item")
 
 	for item in items:
-		if not is_instance_valid(item):
+		if not is_instance_valid(item) or item.is_queued_for_deletion() or not item.is_inside_tree():
 			continue
 
 		if not item_dots.has(item):
@@ -152,7 +152,7 @@ func remove_invalid_dots(dot_dictionary: Dictionary) -> void:
 	var nodes_to_remove := []
 
 	for tracked_node in dot_dictionary.keys():
-		if not is_instance_valid(tracked_node):
+		if not is_instance_valid(tracked_node) or tracked_node.is_queued_for_deletion():
 			nodes_to_remove.append(tracked_node)
 
 	for tracked_node in nodes_to_remove:
