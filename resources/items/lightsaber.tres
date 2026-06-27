@@ -15,4 +15,3 @@ range = 50.0
 name = "Lightsaber"
 icon = SubResource("AtlasTexture_542tk")
 description = "Miecz Świetlny"
-metadata/_custom_type_script = "uid://cyr734yjm8hlp"

@@ -29,10 +29,10 @@ var _level_number: int = 1
 
 func _ready() -> void:
 	if get_tree() and get_tree().current_scene:
-		var s_name = get_tree().current_scene.name.to_lower()
-		if "2" in s_name: _level_number = 2
-		elif "3" in s_name: _level_number = 3
-		elif "4" in s_name: _level_number = 4
+		var s_path = get_tree().current_scene.scene_file_path.to_lower()
+		if "2" in s_path: _level_number = 2
+		elif "3" in s_path: _level_number = 3
+		elif "4" in s_path: _level_number = 4
 		
 	var difficulty_mult = 1.0 + (_level_number - 1) * 0.1 # +10% statystyk na poziom
 	
@@ -138,5 +138,9 @@ func _complete_level() -> void:
 	if _level_number == 1: GameState.level2_unlocked = true
 	elif _level_number == 2: GameState.level3_unlocked = true
 	elif _level_number == 3: GameState.level4_unlocked = true
+
+	# Czekamy sekundę, aby gracz mógł zobaczyć koniec poziomu,
+	# i żeby silnik fizyki mógł bezpiecznie wyczyścić usunięte obiekty (zapobiega to Crashom Signal 11)
+	await get_tree().create_timer(1.0).timeout
 
 	get_tree().call_deferred("change_scene_to_file", HUB_SCENE)
