@@ -25,15 +25,55 @@ const ENEMY_SCENE := preload("res://scenes/characters/enemy_1.tscn")
 var _current_wave: int = 0      # 0 = przeciwnik startowy, 1..wave_count = fale
 var _is_busy: bool = false      # blokada w trakcie odliczania między falami
 var _level_finished: bool = false
+var _level_number: int = 1
 
 func _ready() -> void:
-	# Podłącz się pod zniknięcie przeciwnika startowego (i każdego obecnego na starcie).
+	if get_tree() and get_tree().current_scene:
+		var s_name = get_tree().current_scene.name.to_lower()
+		if "2" in s_name: _level_number = 2
+		elif "3" in s_name: _level_number = 3
+		elif "4" in s_name: _level_number = 4
+		
+	var difficulty_mult = 1.0 + (_level_number - 1) * 0.25 # +25% statystyk na poziom
+	
+	# Podłącz się pod zniknięcie przeciwnika startowego i przeskaluj mu statystyki
 	for enemy in get_tree().get_nodes_in_group("minimap_enemy"):
 		enemy.tree_exited.connect(_on_enemy_removed)
+		var s: EnemyStats = enemy.stats.duplicate()
+		s.max_hp = max(1, int(round(s.max_hp * difficulty_mult)))
+		s.attack_damage = max(1, int(round(s.attack_damage * difficulty_mult)))
+		enemy.stats = s
+		
+	call_deferred("_spawn_chest")
+
+func _spawn_chest() -> void:
+	var chest_scene = load("res://scenes/items/chest.tscn")
+	if chest_scene:
+		var chest = chest_scene.instantiate()
+		var player = get_tree().get_first_node_in_group("player")
+		var center: Vector2 = player.global_position if player != null else global_position
+		chest.global_position = _random_spawn_point(center)
+		# Losowy loot
+		var pot = load("res://resources/items/health_potion.tres")
+		var arm1 = load("res://resources/items/iron_armor.tres")
+		var arm2 = load("res://resources/items/leather_armor.tres")
+		var sword = load("res://resources/items/iron_sword.tres")
+		
+		if randf() < 0.7: 
+			chest.items_inside.append(pot)
+			
+		var r = randf()
+		if r < 0.33: chest.items_inside.append(arm1)
+		elif r < 0.66: chest.items_inside.append(arm2)
+		else: chest.items_inside.append(sword)
+		
+		add_child(chest)
 
 func _on_enemy_removed() -> void:
 	# Poczekaj klatkę, aż wróg zostanie usunięty z drzewa, potem policz pozostałych.
+	if get_tree() == null: return
 	await get_tree().process_frame
+	if get_tree() == null: return
 
 	if _level_finished or _is_busy:
 		return
@@ -66,10 +106,11 @@ func _spawn_wave() -> void:
 	for i in enemies_per_wave:
 		var enemy := ENEMY_SCENE.instantiate()
 
-		# Własna kopia statystyk — NIE ruszamy współdzielonego zasobu .tres.
+		# Własna kopia statystyk — skalujemy o mnożnik fali ORAZ mnożnik poziomu.
 		var s: EnemyStats = enemy.stats.duplicate()
-		s.max_hp = max(1, int(round(s.max_hp * GameState.wave_hp_mult)))
-		s.attack_damage = max(1, int(round(s.attack_damage * GameState.wave_dmg_mult)))
+		var diff_mult = 1.0 + (_level_number - 1) * 0.25
+		s.max_hp = max(1, int(round(s.max_hp * GameState.wave_hp_mult * diff_mult)))
+		s.attack_damage = max(1, int(round(s.attack_damage * GameState.wave_dmg_mult * diff_mult)))
 		enemy.stats = s
 
 		add_child(enemy)

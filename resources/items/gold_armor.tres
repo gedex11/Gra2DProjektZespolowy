@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ArmorItem" load_steps=3 format=3]
+
+[ext_resource type="Texture2D" path="res://icon.svg" id="1_0v61f"]
+[ext_resource type="Script" path="res://scripts/inventory/ArmorItem.gd" id="1_a1b2c"]
+
+[resource]
+script = ExtResource("1_a1b2c")
+armor_bonus = 30
+max_hp_bonus = 80
+name = "Złota Zbroja"
+icon = ExtResource("1_0v61f")
+description = "Legendarna ochrona. Dodaje 30 Pancerza i 80 HP."

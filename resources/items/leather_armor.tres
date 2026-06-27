@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ArmorItem" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/inventory/ArmorItem.gd" id="1_a1b2c"]
+[ext_resource type="Texture2D" path="res://assets/textures/items/leather_armor.png" id="1_jv35w"]
+
+[resource]
+script = ExtResource("1_a1b2c")
+max_hp_bonus = 10
+name = "Skórzana Zbroja"
+icon = ExtResource("1_jv35w")
+description = "Podstawowa ochrona. Dodaje 5 Pancerza i 10 HP."

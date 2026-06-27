@@ -57,5 +57,7 @@ func update_slots() -> void:
 
 		if item == null:
 			icon.texture = null
+		elif player.equipped_armor == item or player.equipped_weapon == item:
+			icon.texture = null
 		else:
 			icon.texture = item.icon

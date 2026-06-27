@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://cx4x chest_uid_abc"]
+
+[ext_resource type="Script" path="res://scripts/items/chest.gd" id="1_chest"]
+[ext_resource type="Texture2D" path="res://assets/textures/items/chest.png" id="2_tex"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_chest"]
+size = Vector2(32, 32)
+
+[node name="Chest" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_chest")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.55, 0.27, 0.07, 1)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_tex")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_chest")

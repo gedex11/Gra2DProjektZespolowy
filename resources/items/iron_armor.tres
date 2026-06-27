@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ArmorItem" load_steps=3 format=3]
+
+[ext_resource type="Texture2D" path="res://assets/textures/items/iron_armor.png" id="1_130jq"]
+[ext_resource type="Script" path="res://scripts/inventory/ArmorItem.gd" id="1_a1b2c"]
+
+[resource]
+script = ExtResource("1_a1b2c")
+armor_bonus = 15
+max_hp_bonus = 30
+name = "Żelazna Zbroja"
+icon = ExtResource("1_130jq")
+description = "Solidna ochrona. Dodaje 15 Pancerza i 30 HP."

@@ -90,8 +90,8 @@ func _on_hit_by_player(area: Area2D) -> void:
 	if is_dead:
 		return
 
-	var dmg: int = area.get_meta("damage", 0)
-	var attacker = area.get_meta("attacker", null)
+	var dmg: int = area.get_meta("damage") if area.has_meta("damage") else 0
+	var attacker = area.get_meta("attacker") if area.has_meta("attacker") else null
 
 	if attacker is Player:
 		last_attacker = attacker

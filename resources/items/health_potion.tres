@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ConsumableItem" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/inventory/ConsumableItem.gd" id="1_a1b2c"]
+[ext_resource type="Texture2D" path="res://assets/textures/items/health_potion.png" id="1_tip3f"]
+
+[resource]
+script = ExtResource("1_a1b2c")
+name = "Mikstura Leczenia"
+icon = ExtResource("1_tip3f")
+description = "Magiczny napój. Leczy 50 punktów życia."
