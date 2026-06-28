@@ -23,71 +23,79 @@ class_name PlayerStats
 @export var life_steal: float = 0.02
 @export var dodge_chance: float = 0.0
 
-const WARRIOR_TABLE := [
-	# [max_hp, armor, ad,  as,    speed, crit,  life_steal, dodge]
-	[150,  12,  15,  1.00, 1.00, 0.05, 0.02, 0.00],
-	[190,  15,  22,  1.05, 1.01, 0.05, 0.03, 0.00],
-	[240,  20,  30,  1.10, 1.02, 0.06, 0.04, 0.01],
-	[310,  28,  42,  1.15, 1.03, 0.07, 0.05, 0.01],
-	[400,  38,  58,  1.20, 1.04, 0.08, 0.07, 0.02],
-	[520,  50,  75,  1.25, 1.05, 0.10, 0.09, 0.02],
-	[680,  65, 100,  1.30, 1.06, 0.12, 0.11, 0.03],
-	[880,  85, 135,  1.35, 1.07, 0.14, 0.13, 0.04],
-	[1100, 110, 180, 1.40, 1.08, 0.16, 0.16, 0.05],
-	[1400, 150, 250, 1.50, 1.10, 0.20, 0.20, 0.07],
-]
+# ── System ulepszeń za poziomy ───────────────────────────────────────────────
+# Poziomy działają jak waluta. Każdy zdobyty poziom daje 1 punkt do wydania.
+# Każda statystyka ma własny koszt: start 1, po każdym zakupie rośnie o 20%.
 
-const RANGER_TABLE := [
-	# [max_hp, armor, ad,  as,    speed, crit,  crit_dmg, dodge]
-	[90,   5,  12,  1.20, 1.05, 0.10, 1.50, 0.05],
-	[110,  7,  18,  1.35, 1.07, 0.12, 1.55, 0.07],
-	[135, 10,  26,  1.50, 1.10, 0.15, 1.60, 0.10],
-	[170, 14,  36,  1.70, 1.13, 0.18, 1.70, 0.12],
-	[215, 18,  50,  1.90, 1.16, 0.22, 1.80, 0.15],
-	[270, 24,  68,  2.10, 1.20, 0.28, 1.95, 0.18],
-	[340, 32,  90,  2.30, 1.24, 0.35, 2.10, 0.22],
-	[430, 42, 120,  2.50, 1.28, 0.45, 2.30, 0.26],
-	[550, 55, 160,  2.75, 1.33, 0.55, 2.55, 0.30],
-	[700, 70, 220,  3.00, 1.40, 0.70, 3.00, 0.40],
-]
+const BASE_UPGRADE_COST := 1.0   # koszt pierwszego ulepszenia każdej statystyki
+const COST_GROWTH := 1.2         # mnożnik kosztu po każdym zakupie (+20%)
 
-func apply_level(new_level: int) -> void:
-	level = clamp(new_level, 1, 10)
-	var idx := level - 1
-	var row: Array
+# Dostępne punkty (zdobyte poziomy jeszcze nie wydane). Float, bo koszty są ułamkowe.
+@export var available_points: float = 0.0
 
-	if class_name_str == "Wojownik":
-		row = WARRIOR_TABLE[idx]
-		var old_max := max_hp
-		max_hp       = row[0]
-		armor        = row[1]
-		attack_damage = row[2]
-		attack_speed  = row[3]
-		speed_multiplier = row[4]
-		crit_chance   = row[5]
-		life_steal    = row[6]
-		dodge_chance  = row[7]
-		current_hp = int(float(current_hp) / old_max * max_hp)
+# Lista statystyk, które można ulepszać, wraz z przyrostem za jeden zakup.
+const UPGRADE_AMOUNTS := {
+	"max_hp": 20,
+	"armor": 2,
+	"attack_damage": 3,
+	"attack_speed": 0.05,
+	"speed_multiplier": 0.02,
+	"crit_chance": 0.01,
+	"crit_damage": 0.05,
+	"life_steal": 0.01,
+	"dodge_chance": 0.01,
+}
 
-	elif class_name_str == "Strzelec":
-		row = RANGER_TABLE[idx]
-		var old_max := max_hp
-		max_hp       = row[0]
-		armor        = row[1]
-		attack_damage = row[2]
-		attack_speed  = row[3]
-		speed_multiplier = row[4]
-		crit_chance   = row[5]
-		crit_damage   = row[6]
-		dodge_chance  = row[7]
-		current_hp = int(float(current_hp) / old_max * max_hp)
+# Nazwy wyświetlane w UI.
+const STAT_DISPLAY := {
+	"max_hp": "HP",
+	"armor": "Armor",
+	"attack_damage": "Damage",
+	"attack_speed": "Atk Speed",
+	"speed_multiplier": "Speed",
+	"crit_chance": "Crit",
+	"crit_damage": "Crit Dmg",
+	"life_steal": "Life Steal",
+	"dodge_chance": "Dodge",
+}
+
+# Bieżący koszt każdej statystyki (osobny licznik na statystykę).
+var upgrade_costs := {}
+
+func _init() -> void:
+	for stat in UPGRADE_AMOUNTS.keys():
+		upgrade_costs[stat] = BASE_UPGRADE_COST
+
+func get_upgrade_cost(stat: String) -> float:
+	return upgrade_costs.get(stat, BASE_UPGRADE_COST)
+
+func can_upgrade(stat: String) -> bool:
+	return UPGRADE_AMOUNTS.has(stat) and available_points >= get_upgrade_cost(stat)
+
+# Kupuje ulepszenie statystyki: odejmuje punkty, podnosi koszt o 20%,
+# zwiększa wartość statystyki. Zwraca true, jeśli zakup się powiódł.
+func upgrade_stat(stat: String) -> bool:
+	if not can_upgrade(stat):
+		return false
+
+	available_points -= get_upgrade_cost(stat)
+	upgrade_costs[stat] = get_upgrade_cost(stat) * COST_GROWTH
+
+	var amount = UPGRADE_AMOUNTS[stat]
+	set(stat, get(stat) + amount)
+
+	# Powiększenie maks. HP leczy gracza o przyrost, by ulepszenie było odczuwalne.
+	if stat == "max_hp":
+		current_hp += amount
 
 	emit_changed()
+	return true
 
 func level_up() -> void:
 	if level < 10:
-		apply_level(level + 1)
-		print("LEVEL UP! Aktualny level: ", level)
+		level += 1
+		available_points += 1.0
+		print("LEVEL UP! Aktualny level: ", level, " | Punkty: ", available_points)
 
 func take_damage(raw_damage: int) -> void:
 	var mitigated := int(raw_damage * (100.0 / (100.0 + armor)))
